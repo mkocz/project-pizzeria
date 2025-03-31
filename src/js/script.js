@@ -191,7 +191,6 @@
       // update calculated price in the HTML
       price *= thisProduct.amountWidget.value;
       thisProduct.dom.priceElem.innerHTML = price;
-
     }
 
     initAmountWidget() {
