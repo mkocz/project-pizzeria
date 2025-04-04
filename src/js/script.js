@@ -154,7 +154,23 @@
         event.preventDefault();
         thisProduct.processOrder();
         thisProduct.addToCart();
+        thisProduct.resetProduct();
       });
+    }
+
+    resetProduct() {
+      const thisProduct = this;
+
+      const generatedHTML = templates.menuProduct(thisProduct.data);
+      thisProduct.element = utils.createDOMFromHTML(generatedHTML);
+      const menuContainer = document.querySelector(select.containerOf.menu);
+      const productElem = menuContainer.querySelector('.product.active')
+      productElem.parentNode.replaceChild(thisProduct.element, productElem)
+      thisProduct.getElements();
+      thisProduct.initAccordion();
+      thisProduct.initOrderForm();
+      thisProduct.initAmountWidget();
+      thisProduct.processOrder();
     }
 
     processOrder() {
