@@ -43,6 +43,7 @@
       formSubmit: '.cart__order [type="submit"]',
       phone: '[name="phone"]',
       address: '[name="address"]',
+      successMessage: '.cart__success-message'
     },
     cartProduct: {
       amountWidget: '.widget-amount',
@@ -59,6 +60,7 @@
     },
     cart: {
       wrapperActive: 'active',
+      messageVisible: 'visible'
     },
   };
 
@@ -348,15 +350,18 @@
       thisCart.dom.form = thisCart.dom.wrapper.querySelector(select.cart.form);
       thisCart.dom.address = thisCart.dom.wrapper.querySelector(select.cart.address);
       thisCart.dom.phone = thisCart.dom.wrapper.querySelector(select.cart.phone);
+      thisCart.dom.successMessage = thisCart.dom.wrapper.querySelector(select.cart.successMessage);
     }
 
     initActions() {
       const thisCart = this;
       thisCart.dom.toggleTrigger.addEventListener('click', function () {
-        thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive)
+        thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
+        thisCart.dom.successMessage.classList.remove(classNames.cart.messageVisible);
       })
       thisCart.dom.productList.addEventListener('updated', function () {
         thisCart.update();
+        thisCart.dom.successMessage.classList.remove(classNames.cart.messageVisible);
       })
       thisCart.dom.productList.addEventListener('remove', function (event) {
         thisCart.remove(event.detail.cartProduct);
@@ -450,7 +455,19 @@
         body: JSON.stringify(payload),
       };
 
-      fetch(url, options);
+      fetch(url, options)
+        .then(function () {
+          thisCart.clear();
+          thisCart.dom.successMessage.classList.add(classNames.cart.messageVisible)
+        });
+    }
+
+    clear() {
+      const thisCart = this;
+
+      thisCart.products = [];
+      thisCart.dom.productList.innerHTML = '';
+      thisCart.update();
     }
   }
 
