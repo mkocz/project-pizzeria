@@ -354,6 +354,17 @@
     add(menuProduct) {
       const thisCart = this;
 
+      if (thisCart.products.length > 0) {
+        for (let product of thisCart.products) {
+          if ((menuProduct.id === product.id) && (JSON.stringify(menuProduct.params) === JSON.stringify(product.params))) {
+            product.amount += menuProduct.amount;
+            product.amountWidget.setValue(product.amount);
+            thisCart.update();
+            return
+          }
+        }
+      }
+
       const generatedHTML = templates.cartProduct(menuProduct);
       const generatedDOM = utils.createDOMFromHTML(generatedHTML);
       thisCart.dom.productList.appendChild(generatedDOM);
@@ -451,6 +462,7 @@
       thisCartProduct.dom.price = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.price);
       thisCartProduct.dom.edit = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.edit);
       thisCartProduct.dom.remove = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.remove);
+
     }
 
     initAmountWidget() {
