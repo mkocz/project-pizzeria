@@ -141,7 +141,6 @@ class Product {
         thisProduct.dom.amountWidgetElem.addEventListener('updated', function () { thisProduct.processOrder() })
     }
 
-
     addToCart() {
         const thisProduct = this;
 
