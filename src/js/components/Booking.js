@@ -19,7 +19,7 @@ class Booking {
         thisBooking.dom.widget.innerHTML = generatedHTML;
         thisBooking.dom.peopleAmount = document.querySelector(select.booking.peopleAmount)
         thisBooking.dom.hoursAmount = document.querySelector(select.booking.hoursAmount)
-        thisBooking.dom.data = document.querySelector(select.widgets.datePicker.wrapper)
+        thisBooking.dom.date = document.querySelector(select.widgets.datePicker.wrapper)
         thisBooking.dom.hour = document.querySelector(select.widgets.hourPicker.wrapper)
     }
 
@@ -33,7 +33,7 @@ class Booking {
         thisBooking.dom.hoursAmount.addEventListener('updated', function () { })
 
         thisBooking.datePicker = new DatePicker(thisBooking.dom.data);
-        thisBooking.dom.data.addEventListener('updated', function () { })
+        thisBooking.dom.date.addEventListener('updated', function () { })
 
         thisBooking.hourPicker = new HourPicker(thisBooking.dom.hour);
         thisBooking.dom.hour.addEventListener('updated', function () { })
