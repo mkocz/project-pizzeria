@@ -32,7 +32,7 @@ class Booking {
         thisBooking.hoursAmountWidget = new AmountWidget(thisBooking.dom.hoursAmount);
         thisBooking.dom.hoursAmount.addEventListener('updated', function () { })
 
-        thisBooking.datePicker = new DatePicker(thisBooking.dom.data);
+        thisBooking.datePicker = new DatePicker(thisBooking.dom.date);
         thisBooking.dom.date.addEventListener('updated', function () { })
 
         thisBooking.hourPicker = new HourPicker(thisBooking.dom.hour);
