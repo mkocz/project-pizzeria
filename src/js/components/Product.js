@@ -137,14 +137,13 @@ class Product {
         const thisProduct = this;
 
         thisProduct.amountWidget = new AmountWidget(thisProduct.dom.amountWidgetElem);
-        thisProduct.amountWidget.initActions();
+        thisProduct.amountWidget.renderValue();
         thisProduct.dom.amountWidgetElem.addEventListener('updated', function () { thisProduct.processOrder() })
     }
 
     addToCart() {
         const thisProduct = this;
 
-        //  app.cart.add(thisProduct.prepareCartProduct());
         const event = new CustomEvent('add-to-cart', {
             bubbles: true,
             detail: {
