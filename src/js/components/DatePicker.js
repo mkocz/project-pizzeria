@@ -10,11 +10,13 @@ class DatePicker extends BaseWidget {
     thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(select.widgets.datePicker.input);
     thisWidget.initPlugin();
   }
+
   initPlugin() {
     const thisWidget = this;
 
     thisWidget.minDate = new Date();
     thisWidget.maxDate = utils.addDays(thisWidget.minDate, settings.datePicker.maxDaysInFuture);
+
     // eslint-disable-next-line no-undef
     flatpickr(thisWidget.dom.input, {
       defaultDate: thisWidget.minDate,
@@ -33,6 +35,7 @@ class DatePicker extends BaseWidget {
       },
     });
   }
+
   parseValue(value) {
     return value;
   }
