@@ -170,35 +170,29 @@ class Booking {
         thisBooking.dom.widget.addEventListener('updated', function () {
             thisBooking.updateDOM()
             thisBooking.resetTables();
-            thisBooking.selectedTable = {}
         })
     }
 
     initTables() {
         const thisBooking = this
-        thisBooking.selectedTable = {}
 
         thisBooking.dom.tablesWrapper.addEventListener('click', function (event) {
-
             const selectedTable = event.target.closest(select.booking.table)
             if (!selectedTable) return
 
-            thisBooking.date = thisBooking.datePicker.value;
-            thisBooking.hour = thisBooking.hourPicker.value;
-            const duration = thisBooking.hoursAmountWidget.value
             const tableId = parseInt(selectedTable.getAttribute(settings.booking.tableIdAttribute))
-            thisBooking.table = tableId
+
             if (selectedTable.classList.contains(classNames.booking.tableBooked)) {
                 alert('Stolik niedostepny')
             } else if (!selectedTable.classList.contains(classNames.booking.tableSelected)) {
-                thisBooking.selectedTable = {
-                    date: thisBooking.date, hour: thisBooking.hour, duration, tableId
-                }
                 thisBooking.resetTables()
                 selectedTable.classList.add(classNames.booking.tableSelected);
+                thisBooking.table = tableId;
+                thisBooking.date = thisBooking.datePicker.value;
+                thisBooking.hour = thisBooking.hourPicker.value;
             } else {
                 selectedTable.classList.remove(classNames.booking.tableSelected);
-                thisBooking.selectedTable = {}
+                thisBooking.table = null
             }
         })
     }
@@ -208,6 +202,7 @@ class Booking {
 
         for (let table of thisBooking.dom.tables) {
             table.classList.remove(classNames.booking.tableSelected);
+            thisBooking.table = null;
         }
     }
 
@@ -221,7 +216,6 @@ class Booking {
     initStarters() {
         const thisBooking = this
         thisBooking.dom.starters.addEventListener('click', function (event) {
-
             if (
                 event.target.tagName === "INPUT" &&
                 event.target.type === "checkbox" &&
@@ -243,7 +237,6 @@ class Booking {
         thisBooking.dom.form.addEventListener('submit', function (event) {
             event.preventDefault();
             if (thisBooking.table) {
-                console.log('fafadf')
                 thisBooking.sendBooking();
             }
         })
@@ -285,9 +278,9 @@ class Booking {
 
         fetch(url, options)
             .then(function () {
-                thisBooking.makeBooked(thisBooking.date, thisBooking.hour, thisBooking.hoursAmountWidget.value, thisBooking.table)
+                thisBooking.makeBooked(thisBooking.date, thisBooking.hour, thisBooking.hoursAmountWidget.value, thisBooking.table);
                 thisBooking.resetBooking();
-                thisBooking.dom.successMessage.classList.add(classNames.booking.messageVisible)
+                thisBooking.dom.successMessage.classList.add(classNames.booking.messageVisible);
                 thisBooking.initResetMessage()
             });
     }
