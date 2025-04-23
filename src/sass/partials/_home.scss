@@ -1,0 +1,177 @@
+.home-wrapper {
+  margin-top: 30px;
+  padding: 40px 30px;
+  background-color: $color-light;
+  border-radius: 5px;
+}
+
+.action-tiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  color: $color-light;
+  font-family: $font-header;
+  font-size: 26px;
+  margin-bottom: 40px;
+}
+
+.tile {
+  text-align: center;
+  flex: 1 1 48%;
+  height: 120px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.tile--hours {
+  flex: 1 1 100%;
+  background: $color-main;
+  flex-direction: column;
+}
+
+.tile--order {
+  background-image: url("../images/home/pizza-1.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.tile--booking {
+  background-image: url("../images/home/pizza-2.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.tile a {
+  color: white;
+  position: relative;
+  transition: transform 0.3s ease;
+  text-decoration: none;
+}
+
+.tile:hover a {
+  transform: translateY(-10px);
+}
+
+.tile--hours span:nth-child(2) {
+  font-family: $font-text;
+  font-size: 16px;
+}
+
+.image-tiles {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.image-tiles .tile {
+  flex: 1 1 25%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 200px;
+}
+
+.tile--img i {
+  display: none;
+}
+
+.tile--img:hover i {
+  display: inline-block;
+  font-size: 1rem;
+  margin-right: 10px;
+  color: $color-light;
+}
+
+.tile--img:hover i:hover {
+  color: $color-main;
+}
+
+.image-tiles .tile:nth-child(1) {
+  background-image: url("../images/home/pizza-4.jpg");
+}
+
+.image-tiles .tile:nth-child(2) {
+  background-image: url("../images/home/pizza-5.jpg");
+}
+
+.image-tiles .tile:nth-child(3) {
+  background-image: url("../images/home/pizza-6.jpg");
+}
+
+.image-tiles .tile:nth-child(4) {
+  background-image: url("../images/home/pizza-7.jpg");
+}
+
+.image-tiles .tile:nth-child(5) {
+  background-image: url("../images/home/pizza-8.jpg");
+}
+
+.image-tiles .tile:nth-child(6) {
+  background-image: url("../images/home/pizza-9.jpg");
+}
+
+.overlay {
+  opacity: 0;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.tile--img:hover .overlay {
+  opacity: 1;
+}
+
+.home-link {
+  color: $color-main;
+}
+
+.carousel {
+  margin-block: 75px;
+}
+
+.carousel-cell {
+  width: 100%;
+  height: 200px;
+  margin-right: 10px;
+  display: flex;
+  font-size: 2rem;
+  border-radius: 10px;
+}
+
+.carousel-cell img {
+  border-radius: 10px;
+  width: 33%;
+}
+
+.cell-text {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 24px;
+}
+
+.carousel-cell h3 {
+  font-size: 16px;
+}
+
+.carousel-cell p {
+  font-size: 14px;
+}
+
+.carousel-cell * {
+  margin: 0;
+}
