@@ -230,10 +230,27 @@
   margin: ($base-size * 4) auto;
 }
 
-.booking-success-message {
+.booking-success-message,
+.phone-field-info,
+.address-field-info {
   display: none;
+}
+
+.phone-field-info,
+.address-field-info {
+  color: $color-danger;
 }
 
 .visible {
   display: block;
+}
+
+.order-confirmation {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.order-confirmation .btn-secondary {
+  height: fit-content;
 }

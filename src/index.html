@@ -59,7 +59,7 @@
                 <button type="submit" class="btn-secondary">Order</button>
               </div>
             </form>
-            <p class="cart__success-message">Zamówienie zostało pomyślnie wysłane.</p>
+            <p class="cart__success-message">The order has been successfully sent.</p>
           </div>
         </div>
       </div>
@@ -165,7 +165,7 @@
       <li>
         <div class="widget-amount"> 
           <a class="btn-quantity btn-quantity--lt" href="#less"><i class="fas fa-minus"></i></a>
-          <input c>lass="amount" type="text" value="{{ amount }}">
+          <input class="amount" type="text" value="{{ amount }}">
           <a class="btn-quantity btn-quantity--lt" href="#more"><i class="fas fa-plus"></i></a>
         </div>
         <div class="cart__product">
@@ -326,11 +326,17 @@
             </div>
           </div>
           <div class="order-confirmation">
-            <input type="tel" name="phone" placeholder="Your phone">
-            <input type="text" name="address" placeholder="Your address">
+            <div class="field-wrapper">      
+              <input type="tel" name="phone" placeholder="Your phone">
+              <p class="phone-field-info">Field is required.</p>
+            </div>
+            <div class="field-wrapper"> 
+              <input type="text" name="address" placeholder="Your address">
+              <p class="address-field-info">Field is required.</p>
+            </div>
             <button type="submit" class="btn-secondary">Book table</button>
-            <p class="booking-success-message">Zamówienie zostało pomyślnie wysłane.</p>
           </div>
+          <p class="booking-success-message">Booking has been successfully sent.</p>
         </form>
       </div>
     </script>

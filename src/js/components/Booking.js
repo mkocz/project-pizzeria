@@ -157,6 +157,8 @@ class Booking {
         thisBooking.dom.starters = thisBooking.dom.widget.querySelector(select.booking.starters)
         thisBooking.dom.form = thisBooking.dom.widget.querySelector(select.booking.form)
         thisBooking.dom.successMessage = thisBooking.dom.widget.querySelector(select.booking.successMessage)
+        thisBooking.dom.phoneInfo = thisBooking.dom.widget.querySelector(select.booking.phoneFieldInfo)
+        thisBooking.dom.addressInfo = thisBooking.dom.widget.querySelector(select.booking.addressFieldInfo)
     }
 
     initWidgets() {
@@ -165,6 +167,7 @@ class Booking {
         thisBooking.peopleAmountWidget = new AmountWidget(thisBooking.dom.peopleAmount);
         thisBooking.hoursAmountWidget = new AmountWidget(thisBooking.dom.hoursAmount);
         thisBooking.datePicker = new DatePicker(thisBooking.dom.date);
+        thisBooking.datePicker.renderValue()
         thisBooking.hourPicker = new HourPicker(thisBooking.dom.hour);
 
         thisBooking.dom.widget.addEventListener('updated', function () {
@@ -183,7 +186,7 @@ class Booking {
             const tableId = parseInt(selectedTable.getAttribute(settings.booking.tableIdAttribute))
 
             if (selectedTable.classList.contains(classNames.booking.tableBooked)) {
-                alert('Stolik niedostepny')
+                alert('Table unavailable')
             } else if (!selectedTable.classList.contains(classNames.booking.tableSelected)) {
                 thisBooking.resetTables()
                 selectedTable.classList.add(classNames.booking.tableSelected);
@@ -213,6 +216,14 @@ class Booking {
         }, { once: true })
     }
 
+    initResetInfoFileds() {
+        const thisBooking = this
+        thisBooking.dom.widget.addEventListener('click', function () {
+            thisBooking.dom.phoneInfo.classList.remove(classNames.booking.messageVisible)
+            thisBooking.dom.addressInfo.classList.remove(classNames.booking.messageVisible)
+        }, { once: true })
+    }
+
     initStarters() {
         const thisBooking = this
         thisBooking.dom.starters.addEventListener('click', function (event) {
@@ -236,6 +247,19 @@ class Booking {
 
         thisBooking.dom.form.addEventListener('submit', function (event) {
             event.preventDefault();
+
+            if (!thisBooking.dom.phone.value) {
+                thisBooking.dom.phoneInfo.classList.add(classNames.booking.messageVisible)
+                thisBooking.initResetInfoFileds()
+                return
+            }
+
+            if (!thisBooking.dom.address.value) {
+                thisBooking.dom.addressInfo.classList.add(classNames.booking.messageVisible)
+                thisBooking.initResetInfoFileds()
+                return
+            }
+
             if (thisBooking.table) {
                 thisBooking.sendBooking();
             }
@@ -257,6 +281,7 @@ class Booking {
     sendBooking() {
         const thisBooking = this
         const url = settings.db.url + '/' + settings.db.bookings;
+
         const payload = {
             "date": thisBooking.datePicker.value,
             "hour": thisBooking.hourPicker.value,
@@ -281,7 +306,7 @@ class Booking {
                 thisBooking.makeBooked(thisBooking.date, thisBooking.hour, thisBooking.hoursAmountWidget.value, thisBooking.table);
                 thisBooking.resetBooking();
                 thisBooking.dom.successMessage.classList.add(classNames.booking.messageVisible);
-                thisBooking.initResetMessage()
+                thisBooking.initResetMessage();
             });
     }
 }

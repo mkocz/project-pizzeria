@@ -50,7 +50,9 @@ export const select = {
         address: '[name="address"]',
         phone: '[name="phone"]',
         form: '.booking-form',
-        successMessage: '.booking-success-message'
+        successMessage: '.booking-success-message',
+        phoneFieldInfo: '.phone-field-info',
+        addressFieldInfo: '.address-field-info'
     },
     nav: {
         links: '.main-nav a',
