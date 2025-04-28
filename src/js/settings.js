@@ -10,6 +10,7 @@ export const select = {
         cart: '#cart',
         pages: '#pages',
         booking: '.booking-wrapper',
+        home: '.home-wrapper'
     },
     all: {
         menuProducts: '#product-list > .product',
@@ -76,6 +77,9 @@ export const select = {
         edit: '[href="#edit"]',
         remove: '[href="#remove"]',
     },
+    home: {
+        carousel: '.main-carousel'
+    }
 };
 
 export const classNames = {
