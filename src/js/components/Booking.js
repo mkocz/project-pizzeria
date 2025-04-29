@@ -216,7 +216,7 @@ class Booking {
         }, { once: true })
     }
 
-    initResetInfoFileds() {
+    initResetInfoFields() {
         const thisBooking = this
         thisBooking.dom.widget.addEventListener('click', function () {
             thisBooking.dom.phoneInfo.classList.remove(classNames.booking.messageVisible)
@@ -250,13 +250,13 @@ class Booking {
 
             if (!thisBooking.dom.phone.value) {
                 thisBooking.dom.phoneInfo.classList.add(classNames.booking.messageVisible)
-                thisBooking.initResetInfoFileds()
+                thisBooking.initResetInfoFields()
                 return
             }
 
             if (!thisBooking.dom.address.value) {
                 thisBooking.dom.addressInfo.classList.add(classNames.booking.messageVisible)
-                thisBooking.initResetInfoFileds()
+                thisBooking.initResetInfoFields()
                 return
             }
 
